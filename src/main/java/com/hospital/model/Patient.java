@@ -1,4 +1,4 @@
-package com.bank.model;
+package com.hospital.model;
 
 public abstract class Patient {
     private String patienceId;
@@ -11,6 +11,9 @@ public abstract class Patient {
         this.patienceId = patientId;
         this.firstName =  firstName;
         this.lastName = lastName;
+        if (age < 1){
+            throw new IllegalArgumentException("Age must be greater than 0");
+        }
         this.age = age;
         this.admitted = false;
     }

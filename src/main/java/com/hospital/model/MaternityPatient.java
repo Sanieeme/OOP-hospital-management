@@ -1,4 +1,4 @@
-package com.bank.model;
+package com.hospital.model;
 
 public class MaternityPatient extends Patient{
     private boolean requiresNicu;
@@ -14,17 +14,20 @@ public class MaternityPatient extends Patient{
         return requiresNicu;
     }
 
-    public void setRequiresNicu(boolean requiresNicu) {
-        this.requiresNicu = requiresNicu;
-    }
 
     @Override
     public double calculateDailyCost(){
+        if(!requiresNicu()){
+            return DAILY_RATE;
+        }
         return DAILY_RATE + NICU_SURCHARGE;
     }
 
     @Override
     public String toString() {
-        return super.toString() + requiresNicu;
+        if (requiresNicu()) {
+            return super.toString() + "NICU";
+        }
+        return super.toString() + "standard";
     }
 }

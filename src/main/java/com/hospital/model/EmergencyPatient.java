@@ -1,4 +1,4 @@
-package com.bank.model;
+package com.hospital.model;
 
 public class EmergencyPatient extends Patient{
     private int triagePriority;
@@ -6,6 +6,9 @@ public class EmergencyPatient extends Patient{
 
     public EmergencyPatient(String patientId, String firstName, String lastName, int age, int triagePriority){
         super(patientId, firstName, lastName, age);
+        if (triagePriority < 1){
+            throw new IllegalArgumentException("Triage priority must be greater than 0");
+        }
         this.triagePriority = triagePriority;
     }
 

@@ -1,31 +1,35 @@
-package com.bank.model;
+package com.hospital.model;
 
 public class InPatient extends Patient{
-    private int consultationCount;
-    public static final double CONSULTATION_RATE = 350.00;
+    private int wardNumber;
+    public static final double DAILY_RATE = 1200.00;
 
-    public InPatient(String patientId, String firstName, String lastName, int age, int consultationCount){
+    public InPatient(String patientId, String firstName, String lastName, int age, int wardNumber){
         super(patientId, firstName, lastName, age);
-        this.consultationCount = consultationCount;
+        if (wardNumber < 1){
+            throw new IllegalArgumentException("Ward number must be greater than 0");
+        }
+        this.wardNumber = wardNumber;
 
     }
-    public int consultationCount(){
-        return consultationCount;
+    public int wardNumber(){
+        return wardNumber;
     }
 
-    public void setConsultationCount(int consultationCount) {
-        if (consultationCount < 0){
+    public void setWardNumber(int wardNumber) {
+        if (wardNumber < 1){
             throw new IllegalArgumentException();
         }
-        this.consultationCount = consultationCount ;
+        this.wardNumber = wardNumber;
     }
     @Override
     public double calculateDailyCost(){
-        return CONSULTATION_RATE;
+        return DAILY_RATE;
     }
 
     @Override
     public String toString(){
-        return super.toString() + consultationCount;
+        return super.toString() + wardNumber;
     }
+
 }
